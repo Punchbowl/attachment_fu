@@ -392,6 +392,11 @@ module Technoweenie # :nodoc:
         end
       end
 
+      def temp_path=(value)
+        temp_paths.unshift value
+        temp_path
+      end
+
       # Gets an array of the currently used temp paths.  Defaults to a copy of #full_filename.
       def temp_paths
         @temp_paths ||= []
