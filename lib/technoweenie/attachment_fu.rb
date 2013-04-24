@@ -583,6 +583,7 @@ module Technoweenie # :nodoc:
           @attachment_fu_delegators ||= {}
 
           backends = self.class.attachment_backends
+
           if backend.nil?
             if backends.size == 1
               backend = backends.keys.first
@@ -598,6 +599,8 @@ module Technoweenie # :nodoc:
           end
 
           hash = backends[backend]
+          hash = backends[backend].present? ? backends[backend] : backends[:default]
+
           @attachment_fu_delegators[backend] ||= hash[:klass].new(self, hash[:options])
           @attachment_fu_delegators[backend]
         end
