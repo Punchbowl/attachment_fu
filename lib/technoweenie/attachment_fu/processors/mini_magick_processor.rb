@@ -5,7 +5,9 @@ module Technoweenie # :nodoc:
       module MiniMagickProcessor
         def self.included(base)
           base.send :extend, ClassMethods
-          base.alias_method_chain :process_attachment, :processing
+          base.send :alias_method, :process_attachment_without_processing, :process_attachment
+          base.send :alias_method, :process_attachment, :process_attachment_with_processing
+          #base.alias_method_chain :process_attachment, :processing
         end
  
         module ClassMethods
